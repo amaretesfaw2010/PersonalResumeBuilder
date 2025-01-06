@@ -8,12 +8,15 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  # You can also use ubuntu-latest for Linux or macos-latest for macOS
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - name: Install dependencies
-      run: lein deps
+      run: |
+        choco install leiningen  # Install Leiningen (Clojure build tool) on Windows
+
     - name: Run tests
-      run: lein test
+      run: lein test   # Run Clojure tests using Leiningen
